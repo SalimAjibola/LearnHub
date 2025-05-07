@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Web Development Bootcamp 2023 - LearnHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .course-tab.active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion.active .accordion-content {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600 flex items-center">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                <span>LearnHub</span>
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">Categories</a>
+                <a href="#" class="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">Teach</a>
+                <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium">My Learning</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="p-2 text-gray-600 hover:text-gray-900 md:hidden">
+                    <i class="fas fa-search"></i>
+                </button>
+                <a href="login.html" class="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium hidden md:block">Login</a>
+                <a href="signup.html" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 font-medium">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <div class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+                <a href="#" class="text-indigo-600 hover:text-indigo-500">Development</a>
+                <span class="mx-2">></span>
+                <a href="#" class="text-indigo-600 hover:text-indigo-500">Web Development</a>
+                <span class="mx-2">></span>
+                <span>Complete Web Development Bootcamp 2023</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">Complete Web Development Bootcamp 2023</h1>
+            <p class="text-lg text-gray-600 mt-2">Learn HTML, CSS, JavaScript, React, Node.js and more!</p>
+            <div class="flex items-center mt-4">
+                <div class="flex items-center text-yellow-400 mr-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="text-gray-600 ml-2">4.7 (12,345 ratings)</span>
+                </div>
+                <div class="flex items-center text-gray-600 mr-4">
+                    <i class="fas fa-user-graduate mr-1"></i>
+                    <span>65,789 students</span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i class="fas fa-comment mr-1"></i>
+                    <span>2,345 reviews</span>
+                </div>
+            </div>
+            <div class="flex items-center mt-2">
+                <div class="flex items-center text-gray-600 mr-4">
+                    <i class="fas fa-user-tie mr-1"></i>
+                    <span>Created by <a href="#" class="text-indigo-600 hover:text-indigo-500">John Doe</a></span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i class="fas fa-calendar-alt mr-1"></i>
+                    <span>Last updated 6/2023</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column - Course Content -->
+            <div class="lg:w-2/3">
+                <!-- Course Tabs -->
+                <div class="border-b border-gray-200 mb-6">
+                    <nav class="-mb-px flex space-x-8">
+                        <a href="#" class="course-tab active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            Overview
+                        </a>
+                        <a href="#" class="course-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Curriculum
+                        </a>
+                        <a href="#" class="course-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Reviews
+                        </a>
+                        <a href="#" class="course-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            Instructor
+                        </a>
+                        <a href="#" class="course-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            FAQs
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Course Video Preview -->
+                <div class="bg-black rounded-lg overflow-hidden shadow-lg mb-8">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- What You'll Learn -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">What you'll learn</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Build 16 web development projects for your portfolio, ready to apply for junior developer jobs</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Learn the latest technologies, including Javascript, React, Node and even Web3 development</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>After the course you will be able to build ANY website you want</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Work as a freelance web developer</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Master frontend development with React</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Master backend development with Node</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Content -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Course content</h2>
+                    <div class="text-gray-600 mb-4">24 sections • 356 lectures • 52h 12m total length</div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <!-- Section 1 -->
+                        <div class="accordion border-b border-gray-200">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chevron-down text-gray-500 mr-3 accordion-icon"></i>
+                                    <span class="font-medium">Introduction</span>
+                                </div>
+                                <div class="text-sm text-gray-500">5 lectures • 32min</div>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="border-t border-gray-200">
+                                    <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-play-circle text-gray-400 mr-3"></i>
+                                            <span>Welcome to the Course</span>
+                                        </div>
+                                        <div class="text-sm text-gray-500">05:12</div>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-play-circle text-gray-400 mr-3"></i>
+                                            <span>How to Get Help</span>
+                                        </div>
+                                        <div class="text-sm text-gray-500">08:45</div>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-play-circle text-gray-400 mr-3"></i>
+                                            <span>Course Resources</span>
+                                        </div>
+                                        <div class="text-sm text-gray-500">06:22</div>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-play-circle text-gray-400 mr-3"></i>
+                                            <span>Setting Up Your Development Environment</span>
+                                        </div>
+                                        <div class="text-sm text-gray-500">07:33</div>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 hover:bg-gray-50">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-question-circle text-gray-400 mr-3"></i>
+                                            <span>Introduction Quiz</span>
+                                        </div>
+                                        <div class="text-sm text-gray-500">5 questions</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Section 2 -->
+                        <div class="accordion border-b border-gray-200">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chevron-down text-gray-500 mr-3 accordion-icon"></i>
+                                    <span class="font-medium">HTML Fundamentals</span>
+                                </div>
+                                <div class="text-sm text-gray-500">12 lectures • 2h 15min</div>
+                            </button>
+                            <div class="accordion-content">
+                                <!-- Content would be similar to Section 1 -->
+                            </div>
+                        </div>
+                        
+                        <!-- Section 3 -->
+                        <div class="accordion border-b border-gray-200">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chevron-down text-gray-500 mr-3 accordion-icon"></i>
+                                    <span class="font-medium">CSS Fundamentals</span>
+                                </div>
+                                <div class="text-sm text-gray-500">18 lectures • 3h 42min</div>
+                            </button>
+                            <div class="accordion-content">
+                                <!-- Content would be similar to Section 1 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Requirements</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>No programming experience needed - I'll teach you everything you need to know</li>
+                        <li>A computer with access to the internet</li>
+                        <li>No paid software required - all websites will be created with free software</li>
+                        <li>I'll walk you through, step-by-step how to get all the software installed and set up</li>
+                    </ul>
+                </div>
+
+                <!-- Description -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+                    <div class="prose max-w-none text-gray-700">
+                        <p>Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With over 50 hours of content, this comprehensive course takes you from beginner to expert.</p>
+                        <p>This course includes over 300 lectures covering all aspects of web development, including:</p>
+                        <ul>
+                            <li>Frontend development with HTML, CSS, and JavaScript</li>
+                            <li>Modern frameworks like React for building interactive user interfaces</li>
+                            <li>Backend development with Node.js and Express</li>
+                            <li>Database integration with MongoDB</li>
+                            <li>Authentication and security</li>
+                            <li>Deployment to production</li>
+                        </ul>
+                        <p>By the end of this course, you'll have built over 16 real-world projects for your portfolio and be ready to apply for junior developer positions or work as a freelance web developer.</p>
+                        <p>The course is taught by John Doe, a senior developer with over 10 years of experience building web applications for companies of all sizes. John has taught over 500,000 students on LearnHub and has a 4.7 instructor rating.</p>
+                        <p>This course comes with a 30-day money-back guarantee - if you're not satisfied for any reason, you can get a full refund, no questions asked.</p>
+                    </div>
+                </div>
+
+                <!-- Instructor -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Instructor</h2>
+                    <div class="flex flex-col md:flex-row items-start">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">John Doe</h3>
+                            <p class="text-gray-600 mb-2">Senior Web Developer & Instructor</p>
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center text-yellow-400 mr-4">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-600">4.7 Instructor Rating</span>
+                            </div>
+                            <div class="flex items-center text-gray-600 mb-4">
+                                <i class="fas fa-user-graduate mr-2"></i>
+                                <span>512,345 Students</span>
+                            </div>
+                            <div class="flex items-center text-gray-600 mb-4">
+                                <i class="fas fa-play-circle mr-2"></i>
+                                <span>24 Courses</span>
+                            </div>
+                            <p class="text-gray-700 mb-4">John is a senior web developer with over 10 years of experience building web applications for companies of all sizes. He specializes in JavaScript frameworks like React and Node.js and has helped hundreds of students transition into careers in web development.</p>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-500 font-medium">More Courses from this Instructor</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Student feedback</h2>
+                    <div class="flex flex-col md:flex-row items-center mb-8">
+                        <div class="text-center md:text-left md:mr-12 mb-4 md:mb-0">
+                            <div class="text-5xl font-bold text-gray-900">4.7</div>
+                            <div class="flex items-center justify-center md:justify-start text-yellow-400 my-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="text-gray-600">Course Rating</div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 text-right mr-2 text-sm text-gray-600">5 star</div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <div class="w-10 text-left ml-2 text-sm text-gray-600">75%</div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 text-right mr-2 text-sm text-gray-600">4 star</div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 15%"></div>
+                                </div>
+                                <div class="w-10 text-left ml-2 text-sm text-gray-600">15%</div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 text-right mr-2 text-sm text-gray-600">3 star</div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 7%"></div>
+                                </div>
+                                <div class="w-10 text-left ml-2 text-sm text-gray-600">7%</div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 text-right mr-2 text-sm text-gray-600">2 star</div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 2%"></div>
+                                </div>
+                                <div class="w-10 text-left ml-2 text-sm text-gray-600">2%</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 text-right mr-2 text-sm text-gray-600">1 star</div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 1%"></div>
+                                </div>
+                                <div class="w-10 text-left ml-2 text-sm text-gray-600">1%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Form (for enrolled students) -->
+                    <div class="border-t border-gray-200 pt-6 mb-8">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Leave a review</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                                <div class="flex items-center">
+                                    <div class="rating-stars flex">
+                                        <i class="fas fa-star text-gray-300 text-2xl mr-1 star" data-rating="1"></i>
+                                        <i class="fas fa-star text-gray-300 text-2xl mr-1 star" data-rating="2"></i>
+                                        <i class="fas fa-star text-gray-300 text-2xl mr-1 star" data-rating="3"></i>
+                                        <i class="fas fa-star text-gray-300 text-2xl mr-1 star" data-rating="4"></i>
+                                        <i class="fas fa-star text-gray-300 text-2xl star" data-rating="5"></i>
+                                    </div>
+                                    <span class="ml-2 text-sm text-gray-500" id="rating-text">Select a rating</span>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="review-title" class="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                                <input type="text" id="review-title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="review-content" class="block text-sm font-medium text-gray-700 mb-2">Review</label>
+                                <textarea id="review-content" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            </div>
+                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+                                Submit Review
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Reviews List -->
+                    <div class="border-t border-gray-200 pt-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-medium text-gray-900">Reviews</h3>
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 mr-2">Sort by:</span>
+                                <select class="block pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option>Most Recent</option>
+                                    <option>Highest Rated</option>
+                                    <option>Lowest Rated</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Review 1 -->
+                        <div class="border-b border-gray-200 pb-6 mb-6">
+                            <div class="flex items-center mb-2">
+                                <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Sarah Johnson</h4>
+                                    <div class="flex items-center">
+                                        <div class="flex items-center text-yellow-400 mr-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-500">2 weeks ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-1">Amazing Course!</h5>
+                            <p class="text-gray-700 mb-2">This course completely transformed my career. I went from zero coding knowledge to landing a junior developer position in just 6 months! The instructor explains everything clearly and the projects are really practical.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-gray-700">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (124)</span>
+                                </button>
+                                <button class="flex items-center hover:text-gray-700">
+                                    <i class="far fa-thumbs-down mr-1"></i>
+                                    <span>Not Helpful (2)</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Review 2 -->
+                        <div class="border-b border-gray-200 pb-6 mb-6">
+                            <div class="flex items-center mb-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Michael Chen</h4>
+                                    <div class="flex items-center">
+                                        <div class="flex items-center text-yellow-400 mr-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-500">1 month ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-1">Great content, but some sections need updating</h5>
+                            <p class="text-gray-700 mb-2">The course content is excellent and very comprehensive. I learned a ton and was able to build several projects for my portfolio. My only complaint is that some of the React sections use older syntax and could be updated to use hooks throughout.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <button class="flex items-center mr-4 hover:text-gray-700">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (89)</span>
+                                </button>
+                                <button class="flex items-center hover:text-gray-700">
+                                    <i class="far fa-thumbs-down mr-1"></i>
+                                    <span>Not Helpful (5)</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Load More Button -->
+                        <div class="text-center mt-6">
+                            <button class="px-4 py-2 border border-gray-300 rounded-md text-indigo-600 hover:bg-gray-50 font-medium">
+                                Load More Reviews
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Course Card & Details -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-lg shadow-lg sticky top-4 overflow-hidden">
+                    <!-- Course Image -->
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Web Development" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <button class="bg-white/90 hover:bg-white text-indigo-600 rounded-full w-16 h-16 flex items-center justify-center">
+                                <i class="fas fa-play text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Price & Action -->
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl font-bold text-gray-900">$89.99</span>
+                            <span class="ml-2 text-lg text-gray-500 line-through">$199.99</span>
+                            <span class="ml-auto bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">55% off</span>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <button class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+                                Add to Cart
+                            </button>
+                            <button class="w-full bg-white text-indigo-600 py-3 px-4 rounded-md border border-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+                                Buy Now
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mb-6">
+                            <p class="text-sm text-gray-600">30-Day Money-Back Guarantee</p>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-4">
+                            <h3 class="font-medium text-gray-900 mb-3">This course includes:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-center">
+                                    <i class="fas fa-play-circle text-indigo-500 mr-2"></i>
+                                    <span>52 hours on-demand video</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-file-alt text-indigo-500 mr-2"></i>
+                                    <span>48 articles</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-download text-indigo-500 mr-2"></i>
+                                    <span>36 downloadable resources</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-infinity text-indigo-500 mr-2"></i>
+                                    <span>Full lifetime access</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-mobile-alt text-indigo-500 mr-2"></i>
+                                    <span>Access on mobile and TV</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-trophy text-indigo-500 mr-2"></i>
+                                    <span>Certificate of completion</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Share & Gift -->
+                    <div class="border-t border-gray-200 p-6">
+                        <button class="w-full flex items-center justify-center text-indigo-600 hover:text-indigo-500 font-medium mb-4">
+                            <i class="fas fa-share-square mr-2"></i>
+                            <span>Share</span>
+                        </button>
+                        <button class="w-full flex items-center justify-center text-indigo-600 hover:text-indigo-500 font-medium">
+                            <i class="fas fa-gift mr-2"></i>
+                            <span>Gift this course</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Training Programs -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mt-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Training 5 or more people?</h3>
+                    <p class="text-sm text-gray-600 mb-4">Get your team access to 5,000+ top LearnHub courses anytime, anywhere.</p>
+                    <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-sm font-medium">
+                        Try LearnHub Business
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LearnHub</h3>
+                    <p class="text-gray-400">The best online learning platform for skills that matter.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Business</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Marketing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 LearnHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+                
+                const icon = header.querySelector('.accordion-icon');
+                if (accordion.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Rating stars functionality
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', (e) => {
+                const rating = parseInt(e.target.getAttribute('data-rating'));
+                const stars = document.querySelectorAll('.star');
+                const ratingText = document.getElementById('rating-text');
+                
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('text-gray-300');
+                        s.classList.add('text-yellow-400');
+                    } else {
+                        s.classList.remove('text-yellow-400');
+                        s.classList.add('text-gray-300');
+                    }
+                });
+                
+                const ratingTexts = ['Select a rating', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                ratingText.textContent = ratingTexts[rating];
+            });
+            
+            star.addEventListener('mouseover', (e) => {
+                const rating = parseInt(e.target.getAttribute('data-rating'));
+                const stars = document.querySelectorAll('.star');
+                
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('text-gray-300');
+                        s.classList.add('text-yellow-400');
+                    }
+                });
+            });
+            
+            star.addEventListener('mouseout', (e) => {
+                const stars = document.querySelectorAll('.star');
+                const ratingText = document.getElementById('rating-text');
+                let currentRating = 0;
+                
+                stars.forEach((s, index) => {
+                    if (s.classList.contains('text-yellow-400') && !s.classList.contains('text-gray-300')) {
+                        currentRating = index + 1;
+                    }
+                });
+                
+                if (currentRating === 0) {
+                    stars.forEach(s => {
+                        s.classList.remove('text-yellow-400');
+                        s.classList.add('text-gray-300');
+                    });
+                    ratingText.textContent = 'Select a rating';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Lecture - LearnHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .file-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.375rem;
+        }
+        .file-upload:hover {
+            border-color: #9ca3af;
+        }
+        .file-upload.dragover {
+            border-color: #4f46e5;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex items-center h-16 flex-shrink-0 px-4 bg-white">
+                    <a href="index.html" class="text-xl font-bold text-indigo-600 flex items-center">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        <span>LearnHub</span>
+                    </a>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="px-4 py-5 flex items-center border-b border-gray-200">
+                        <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User profile">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-700">John Doe</p>
+                            <p class="text-xs text-gray-500">Instructor</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <a href="lecturer-dashboard.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-tachometer-alt text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-book-open text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            My Courses
+                        </a>
+                        <a href="#" class="bg-indigo-50 text-indigo-600 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-upload text-indigo-500 mr-3"></i>
+                            Upload Lecture
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-line text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Analytics
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-comments text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Reviews
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-wallet text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Earnings
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+                
+                <!-- Bottom Section -->
+                <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+                    <a href="#" class="flex-shrink-0 w-full group block">
+                        <div class="flex items-center">
+                            <div>
+                                <img class="inline-block h-9 w-9 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User profile">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-700">John Doe</p>
+                                <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto focus:outline-none">
+            <!-- Top Navigation -->
+            <div class="bg-white shadow-sm border-b border-gray-200">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <!-- Mobile menu button -->
+                        <div class="flex items-center lg:hidden">
+                            <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Search bar -->
+                        <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                            <div class="max-w-lg w-full lg:max-w-xs">
+                                <label for="search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-400"></i>
+                                    </div>
+                                    <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search" type="search">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right side -->
+                        <div class="flex items-center">
+                            <button type="button" class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-bell"></i>
+                            </button>
+                            <button type="button" class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 pb-8">
+                <!-- Page header -->
+                <div class="bg-white shadow">
+                    <div class="px-4 sm:px-6 lg:px-8 py-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h1 class="text-2xl font-bold text-gray-900">Upload New Lecture</h1>
+                                <p class="mt-1 text-sm text-gray-600">Add new content to your courses</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-save mr-2"></i> Save Draft
+                                </button>
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-eye mr-2"></i> Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form -->
+                <div class="mt-8 px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                        <!-- Left Column - Form -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white shadow rounded-lg overflow-hidden">
+                                <div class="p-6">
+                                    <h2 class="text-lg font-medium text-gray-900 mb-6">Lecture Details</h2>
+                                    
+                                    <!-- Course Selection -->
+                                    <div class="mb-6">
+                                        <label for="course" class="block text-sm font-medium text-gray-700 mb-2">Select Course</label>
+                                        <select id="course" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                            <option>Complete Web Development Bootcamp 2023</option>
+                                            <option>Python for Data Science & Machine Learning</option>
+                                            <option>Digital Marketing Masterclass 2023</option>
+                                            <option>UI/UX Design with Figma</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Section Selection -->
+                                    <div class="mb-6">
+                                        <label for="section" class="block text-sm font-medium text-gray-700 mb-2">Select Section</label>
+                                        <select id="section" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                            <option>Introduction</option>
+                                            <option>HTML Fundamentals</option>
+                                            <option>CSS Fundamentals</option>
+                                            <option>JavaScript Basics</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Lecture Title -->
+                                    <div class="mb-6">
+                                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Lecture Title</label>
+                                        <input type="text" id="title" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g. Introduction to HTML">
+                                    </div>
+                                    
+                                    <!-- Lecture Description -->
+                                    <div class="mb-6">
+                                        <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Lecture Description</label>
+                                        <textarea id="description" rows="4" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="What will students learn in this lecture?"></textarea>
+                                    </div>
+                                    
+                                    <!-- Lecture Type -->
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Lecture Type</label>
+                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                            <div>
+                                                <input type="radio" id="type-video" name="lecture-type" class="hidden peer" checked>
+                                                <label for="type-video" class="flex flex-col items-center justify-center p-4 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-indigo-500 peer-checked:bg-indigo-50 hover:bg-gray-50">
+                                                    <i class="fas fa-video text-indigo-600 text-2xl mb-2"></i>
+                                                    <span class="text-sm font-medium text-gray-900">Video</span>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="type-article" name="lecture-type" class="hidden peer">
+                                                <label for="type-article" class="flex flex-col items-center justify-center p-4 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-indigo-500 peer-checked:bg-indigo-50 hover:bg-gray-50">
+                                                    <i class="fas fa-file-alt text-indigo-600 text-2xl mb-2"></i>
+                                                    <span class="text-sm font-medium text-gray-900">Article</span>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="type-quiz" name="lecture-type" class="hidden peer">
+                                                <label for="type-quiz" class="flex flex-col items-center justify-center p-4 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-indigo-500 peer-checked:bg-indigo-50 hover:bg-gray-50">
+                                                    <i class="fas fa-question-circle text-indigo-600 text-2xl mb-2"></i>
+                                                    <span class="text-sm font-medium text-gray-900">Quiz</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Video Upload -->
+                                    <div id="video-upload-section" class="mb-6">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Video Upload</label>
+                                        <div class="file-upload relative p-12 border-2 border-dashed rounded-lg text-center hover:cursor-pointer">
+                                            <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="video/*">
+                                            <div class="flex flex-col items-center justify-center">
+                                                <i class="fas fa-cloud-upload-alt text-indigo-500 text-4xl mb-3"></i>
+                                                <h3 class="text-lg font-medium text-gray-900 mb-1">Drag and drop your video file here</h3>
+                                                <p class="text-sm text-gray-600 mb-3">or click to browse files</p>
+                                                <p class="text-xs text-gray-500">MP4, WebM or MOV. Max file size 2GB.</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 text-sm text-gray-500">Uploading may take several minutes depending on your internet connection.</div>
+                                    </div>
+                                    
+                                    <!-- Article Content (hidden by default) -->
+                                    <div id="article-content-section" class="mb-6 hidden">
+                                        <label for="article-content" class="block text-sm font-medium text-gray-700 mb-2">Article Content</label>
+                                        <textarea id="article-content" rows="10" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Write your article content here..."></textarea>
+                                    </div>
+                                    
+                                    <!-- Quiz Questions (hidden by default) -->
+                                    <div id="quiz-section" class="mb-6 hidden">
+                                        <label class="block text-sm font-medium text-gray-700 mb-4">Quiz Questions</label>
+                                        <div class="space-y-6">
+                                            <!-- Question 1 -->
+                                            <div class="border border-gray-200 rounded-lg p-4">
+                                                <div class="flex justify-between items-center mb-3">
+                                                    <h4 class="font-medium text-gray-900">Question 1</h4>
+                                                    <button type="button" class="text-red-500 hover:text-red-700">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="text" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3" placeholder="Enter your question">
+                                                
+                                                <div class="space-y-2 mb-3">
+                                                    <div class="flex items-center">
+                                                        <input type="radio" name="q1" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                                                        <input type="text" class="ml-2 block flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Option 1">
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <input type="radio" name="q1" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                                                        <input type="text" class="ml-2 block flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Option 2">
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <input type="radio" name="q1" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                                                        <input type="text" class="ml-2 block flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Option 3">
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <input type="radio" name="q1" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                                                        <input type="text" class="ml-2 block flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="flex justify-between items-center">
+                                                    <button type="button" class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <i class="fas fa-plus mr-1"></i> Add Option
+                                                    </button>
+                                                    <div class="text-sm text-gray-500">
+                                                        <label class="inline-flex items-center">
+                                                            <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                                            <span class="ml-2">Required</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Add Question Button -->
+                                            <button type="button" class="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                <i class="fas fa-plus mr-2"></i> Add Question
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Resources -->
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Resources</label>
+                                        <div class="file-upload relative p-8 border-2 border-dashed rounded-lg text-center hover:cursor-pointer mb-3">
+                                            <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" multiple>
+                                            <div class="flex flex-col items-center justify-center">
+                                                <i class="fas fa-paperclip text-indigo-500 text-3xl mb-2"></i>
+                                                <h3 class="text-sm font-medium text-gray-900 mb-1">Add resources (optional)</h3>
+                                                <p class="text-xs text-gray-600">PDFs, code files, slides, etc.</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">Add supplementary materials to help your students.</div>
+                                    </div>
+                                    
+                                    <!-- Lecture Duration -->
+                                    <div class="mb-6">
+                                        <label for="duration" class="block text-sm font-medium text-gray-700 mb-2">Lecture Duration (minutes)</label>
+                                        <input type="number" id="duration" min="1" class="block w-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g. 15">
+                                    </div>
+                                    
+                                    <!-- Free Preview -->
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Free Preview</label>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="free-preview" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                            <label for="free-preview" class="ml-2 block text-sm text-gray-700">Make this lecture available for free preview</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Submit Button -->
+                                    <div class="pt-4 border-t border-gray-200">
+                                        <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+                                            Publish Lecture
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column - Preview & Tips -->
+                        <div class="space-y-6">
+                            <!-- Preview Card -->
+                            <div class="bg-white shadow rounded-lg overflow-hidden">
+                                <div class="p-6">
+                                    <h2 class="text-lg font-medium text-gray-900 mb-4">Lecture Preview</h2>
+                                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                                        <div class="w-full h-full flex items-center justify-center text-gray-400">
+                                            <i class="fas fa-video text-4xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Lecture Title</h3>
+                                    <p class="text-sm text-gray-600 mb-3">Lecture description will appear here</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        <span>0 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tips Card -->
+                            <div class="bg-white shadow rounded-lg overflow-hidden">
+                                <div class="p-6">
+                                    <h2 class="text-lg font-medium text-gray-900 mb-4">Tips for a Great Lecture</h2>
+                                    <ul class="space-y-3 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>Keep videos under 15 minutes for better engagement</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>Use clear and concise titles</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>Provide downloadable resources when possible</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>Mark key lectures as free preview to attract students</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Requirements Card -->
+                            <div class="bg-white shadow rounded-lg overflow-hidden">
+                                <div class="p-6">
+                                    <h2 class="text-lg font-medium text-gray-900 mb-4">Technical Requirements</h2>
+                                    <ul class="space-y-3 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-video text-indigo-500 mt-1 mr-2"></i>
+                                            <span>Video resolution: 720p or 1080p</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-file-video text-indigo-500 mt-1 mr-2"></i>
+                                            <span>Accepted formats: MP4, WebM, MOV</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-microphone text-indigo-500 mt-1 mr-2"></i>
+                                            <span>Clear audio with minimal background noise</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-file text-indigo-500 mt-1 mr-2"></i>
+                                            <span>Resources max size: 50MB each</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Toggle lecture type sections
+        document.querySelectorAll('input[name="lecture-type"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.getElementById('video-upload-section').classList.add('hidden');
+                document.getElementById('article-content-section').classList.add('hidden');
+                document.getElementById('quiz-section').classList.add('hidden');
+                
+                if (e.target.id === 'type-video') {
+                    document.getElementById('video-upload-section').classList.remove('hidden');
+                } else if (e.target.id === 'type-article') {
+                    document.getElementById('article-content-section').classList.remove('hidden');
+                } else if (e.target.id === 'type-quiz') {
+                    document.getElementById('quiz-section').classList.remove('hidden');
+                }
+            });
+        });
+        
+        // File upload drag and drop
+        const fileUploads = document.querySelectorAll('.file-upload');
+        
+        fileUploads.forEach(upload => {
+            const input = upload.querySelector('input[type="file"]');
+            
+            upload.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                upload.classList.add('dragover');
+            });
+            
+            upload.addEventListener('dragleave', () => {
+                upload.classList.remove('dragover');
+            });
+            
+            upload.addEventListener('drop', (e) => {
+                e.preventDefault();
+                upload.classList.remove('dragover');
+                input.files = e.dataTransfer.files;
+            });
+            
+            input.addEventListener('change', () => {
+                if (input.files.length > 0) {
+                    upload.classList.add('border-indigo-500', 'bg-indigo-50');
+                } else {
+                    upload.classList.remove('border-indigo-500', 'bg-indigo-50');
+                }
+            });
+        });
+        
+        // Update preview when title or description changes
+        const titleInput = document.getElementById('title');
+        const descInput = document.getElementById('description');
+        const previewTitle = document.querySelector('.lecture-preview h3');
+        const previewDesc = document.querySelector('.lecture-preview p');
+        
+        titleInput.addEventListener('input', () => {
+            previewTitle.textContent = titleInput.value || 'Lecture Title';
+        });
+        
+        descInput.addEventListener('input', () => {
+            previewDesc.textContent = descInput.value || 'Lecture description will appear here';
+        });
+    </script>
+</body>
+</html>

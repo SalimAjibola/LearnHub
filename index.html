@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub - Online Learning Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .instructor-img {
+            transition: transform 0.3s ease;
+        }
+        .instructor-card:hover .instructor-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary-600 flex items-center">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                <span>LearnHub</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Categories</a>
+                <a href="lecturer-dashboard.html" class="px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Teach</a>
+                <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">My Learning</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="p-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="p-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                </button>
+                <button class="p-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-bell text-lg"></i>
+                </button>
+                <a href="login.html" class="px-3 py-2 text-gray-700 hover:text-primary-600 font-medium hidden md:block">Login</a>
+                <a href="signup.html" class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 font-medium">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Learn the skills of tomorrow, today</h1>
+                    <p class="text-xl text-primary-100 mb-6">Join thousands of learners worldwide with our comprehensive courses taught by industry experts.</p>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" placeholder="What do you want to learn?" class="px-4 py-3 rounded-md border-0 focus:outline-none focus:ring-2 focus:ring-white text-gray-900 w-full">
+                        <button class="bg-white text-primary-700 px-6 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap">
+                            <i class="fas fa-search mr-2"></i> Search
+                        </button>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-sm">Trending:</span>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full">Python</a>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full">Web Development</a>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full">Data Science</a>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full">Digital Marketing</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                         alt="Students learning together" 
+                         class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="py-8 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <p class="text-center text-gray-500 mb-6">Trusted by companies worldwide</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" alt="React" class="h-8 opacity-70 hover:opacity-100 transition">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" alt="Laravel" class="h-8 opacity-70 hover:opacity-100 transition">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1024px-Tailwind_CSS_Logo.svg.png" alt="Tailwind CSS" class="h-8 opacity-70 hover:opacity-100 transition">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="h-8 opacity-70 hover:opacity-100 transition">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/1280px-Google-flutter-logo.svg.png" alt="Flutter" class="h-8 opacity-70 hover:opacity-100 transition">
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Courses Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Popular Courses</h2>
+                <a href="#" class="text-primary-600 hover:text-primary-800 font-medium">Browse all courses <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Course Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden course-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Web Development" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                            <i class="fas fa-star mr-1 text-yellow-400"></i> 4.7
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Complete Web Development Bootcamp 2023</h3>
+                        <p class="text-gray-600 text-sm mb-3">Learn HTML, CSS, JavaScript, React, Node.js and more!</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            <span>12,345 students</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm">John Doe</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-primary-600 font-bold">₦90,000</span>
+                                <span class="block text-xs text-gray-400 line-through">₦200,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden course-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Data Science" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                            <i class="fas fa-star mr-1 text-yellow-400"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Python for Data Science & Machine Learning</h3>
+                        <p class="text-gray-600 text-sm mb-3">Master Python, Pandas, NumPy, and data visualization</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            <span>8,765 students</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm">Jane Smith</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-primary-600 font-bold">₦80,000</span>
+                                <span class="block text-xs text-gray-400 line-through">₦150,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden course-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Digital Marketing" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                            <i class="fas fa-star mr-1 text-yellow-400"></i> 4.5
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Digital Marketing Masterclass 2023</h3>
+                        <p class="text-gray-600 text-sm mb-3">SEO, Social Media, Content Marketing and more</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            <span>5,432 students</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm">Mike Johnson</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-primary-600 font-bold">₦70,000</span>
+                                <span class="block text-xs text-gray-400 line-through">₦130,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden course-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                             alt="UI/UX Design" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                            <i class="fas fa-star mr-1 text-yellow-400"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">UI/UX Design with Figma</h3>
+                        <p class="text-gray-600 text-sm mb-3">From beginner to advanced design techniques</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            <span>7,890 students</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm">Sarah Williams</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-primary-600 font-bold">₦74,000</span>
+                                <span class="block text-xs text-gray-400 line-through">₦140,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Browse by Category</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Category 1 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-laptop-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Development</h3>
+                </a>
+                
+                <!-- Category 2 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Business</h3>
+                </a>
+                
+                <!-- Category 3 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-palette text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Design</h3>
+                </a>
+                
+                <!-- Category 4 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-yellow-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-bullhorn text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Marketing</h3>
+                </a>
+                
+                <!-- Category 5 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-camera text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Photography</h3>
+                </a>
+                
+                <!-- Category 6 -->
+                <a href="#" class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-md transition">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-music text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Music</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Instructors Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Featured Instructors</h2>
+                <a href="#" class="text-primary-600 hover:text-primary-800 font-medium">View all instructors <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Instructor 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden instructor-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                             alt="Instructor" 
+                             class="w-full h-full object-cover instructor-img">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Alex Johnson</h3>
+                        <p class="text-gray-600 mb-3">Web Development Expert</p>
+                        <div class="flex justify-center items-center text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-gray-600 ml-2">4.8</span>
+                        </div>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-blue-700 hover:text-blue-900">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-800 hover:text-gray-600">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden instructor-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" 
+                             alt="Instructor" 
+                             class="w-full h-full object-cover instructor-img">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Sarah Miller</h3>
+                        <p class="text-gray-600 mb-3">Data Science Specialist</p>
+                        <div class="flex justify-center items-center text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-600 ml-2">5.0</span>
+                        </div>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-blue-700 hover:text-blue-900">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-800 hover:text-gray-600">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden instructor-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                             alt="Instructor" 
+                             class="w-full h-full object-cover instructor-img">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Michael Chen</h3>
+                        <p class="text-gray-600 mb-3">Digital Marketing Guru</p>
+                        <div class="flex justify-center items-center text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-600 ml-2">4.9</span>
+                        </div>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-blue-700 hover:text-blue-900">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-800 hover:text-gray-600">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden instructor-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" 
+                             alt="Instructor" 
+                             class="w-full h-full object-cover instructor-img">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Emma Wilson</h3>
+                        <p class="text-gray-600 mb-3">UI/UX Design Expert</p>
+                        <div class="flex justify-center items-center text-yellow-400 mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-600 ml-2">5.0</span>
+                        </div>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-blue-700 hover:text-blue-900">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-800 hover:text-gray-600">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">What Our Students Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">2 weeks ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The Web Development Bootcamp completely transformed my career. I went from zero coding knowledge to landing a junior developer position in just 6 months!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-medium text-gray-800">David Rodriguez</h4>
+                            <p class="text-sm text-gray-600">Web Developer at TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">1 month ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The Data Science course gave me practical skills I could immediately apply at work. The instructors are incredibly knowledgeable and supportive."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Lisa Thompson</h4>
+                            <p class="text-sm text-gray-600">Data Analyst at DataInsights</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">3 days ago</span>
+                    </div>
+                    <p class="text-gray-700 mb-6">"I took the Digital Marketing course to help grow my small business. The practical strategies I learned helped me double my online sales in just 3 months!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-medium text-gray-800">James Wilson</h4>
+                            <p class="text-sm text-gray-600">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to start learning?</h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">Join thousands of students worldwide who are advancing their careers with our courses.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="px-8 py-3 bg-white text-primary-700 rounded-md hover:bg-gray-100 font-medium">Browse Courses</a>
+                <a href="#" class="px-8 py-3 border-2 border-white text-white rounded-md hover:bg-white/10 font-medium">Become an Instructor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-2">
+                    <a href="#" class="text-2xl font-bold text-white flex items-center mb-4">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        <span>LearnHub</span>
+                    </a>
+                    <p class="mb-4">The best online learning platform for skills that matter in today's world.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Development</a></li>
+                        <li><a href="#" class="hover:text-white">Business</a></li>
+                        <li><a href="#" class="hover:text-white">Design</a></li>
+                        <li><a href="#" class="hover:text-white">Marketing</a></li>
+                        <li><a href="#" class="hover:text-white">IT & Software</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Press</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Terms</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 LearnHub. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Terms</a>
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Button (hidden on larger screens) -->
+    <button class="md:hidden fixed bottom-6 right-6 bg-primary-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-50">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+</body>
+</html>

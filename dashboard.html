@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LearnHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .course-progress::-webkit-progress-bar {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+        }
+        .course-progress::-webkit-progress-value {
+            background-color: #4f46e5;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex items-center h-16 flex-shrink-0 px-4 bg-white">
+                    <a href="index.html" class="text-xl font-bold text-indigo-600 flex items-center">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        <span>LearnHub</span>
+                    </a>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <!-- User Profile -->
+                    <div class="px-4 py-5 flex items-center border-b border-gray-200">
+                        <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/47.jpg" alt="User profile">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-700">Sarah Johnson</p>
+                            <p class="text-xs text-gray-500">Student</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <a href="#" class="bg-indigo-50 text-indigo-600 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-home text-indigo-500 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-book-open text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            My Courses
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-bookmark text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Wishlist
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-certificate text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Certificates
+                        </a>
+                        <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog text-gray-400 group-hover:text-gray-500 mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+                
+                <!-- Bottom Section -->
+                <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+                    <a href="#" class="flex-shrink-0 w-full group block">
+                        <div class="flex items-center">
+                            <div>
+                                <img class="inline-block h-9 w-9 rounded-full" src="https://randomuser.me/api/portraits/women/47.jpg" alt="User profile">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-700">Sarah Johnson</p>
+                                <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto focus:outline-none">
+            <!-- Top Navigation -->
+            <div class="bg-white shadow-sm border-b border-gray-200">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <!-- Mobile menu button -->
+                        <div class="flex items-center lg:hidden">
+                            <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Search bar -->
+                        <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                            <div class="max-w-lg w-full lg:max-w-xs">
+                                <label for="search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-400"></i>
+                                    </div>
+                                    <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search" type="search">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right side -->
+                        <div class="flex items-center">
+                            <button type="button" class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-bell"></i>
+                            </button>
+                            <button type="button" class="ml-3 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 pb-8">
+                <!-- Page header -->
+                <div class="bg-white shadow">
+                    <div class="px-4 sm:px-6 lg:px-8 py-6">
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+                            <div class="flex space-x-3">
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-download mr-2"></i> Export
+                                </button>
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-plus mr-2"></i> New Course
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="mt-8 px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        <!-- Enrolled Courses -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                                        <i class="fas fa-book-open text-white"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Enrolled Courses</dt>
+                                            <dd>
+                                                <div class="text-lg font-medium text-gray-900">12</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="border-t border-gray-200 pt-3 flex items-center justify-between">
+                                        <div class="text-sm font-medium text-gray-500">
+                                            <span class="text-green-600">+2</span> from last month
+                                        </div>
+                                        <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">View all</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hours Learned -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                        <i class="fas fa-clock text-white"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Hours Learned</dt>
+                                            <dd>
+                                                <div class="text-lg font-medium text-gray-900">48.5</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="border-t border-gray-200 pt-3 flex items-center justify-between">
+                                        <div class="text-sm font-medium text-gray-500">
+                                            <span class="text-green-600">+12.5</span> from last month
+                                        </div>
+                                        <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">View details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Certificates -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                                        <i class="fas fa-certificate text-white"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Certificates</dt>
+                                            <dd>
+                                                <div class="text-lg font-medium text-gray-900">5</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="border-t border-gray-200 pt-3 flex items-center justify-between">
+                                        <div class="text-sm font-medium text-gray-500">
+                                            <span class="text-green-600">+1</span> from last month
+                                        </div>
+                                        <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">View all</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Learning Streak -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                                        <i class="fas fa-fire text-white"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Learning Streak</dt>
+                                            <dd>
+                                                <div class="text-lg font-medium text-gray-900">14 days</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="border-t border-gray-200 pt-3 flex items-center justify-between">
+                                        <div class="text-sm font-medium text-gray-500">
+                                            Keep it up!
+                                        </div>
+                                        <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Continue</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Courses in Progress -->
+                <div class="mt-8 px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Courses in Progress</h2>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Course 1 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.7
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Complete Web Development Bootcamp 2023</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>12,345 students</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>Progress</span>
+                                        <span>65%</span>
+                                    </div>
+                                    <progress class="course-progress w-full h-2" value="65" max="100"></progress>
+                                </div>
+                                <div class="flex justify-between">
+                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Continue</a>
+                                    <span class="text-sm text-gray-500">Last viewed 2 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 2 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Science">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.9
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Python for Data Science & Machine Learning</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>8,765 students</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>Progress</span>
+                                        <span>42%</span>
+                                    </div>
+                                    <progress class="course-progress w-full h-2" value="42" max="100"></progress>
+                                </div>
+                                <div class="flex justify-between">
+                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Continue</a>
+                                    <span class="text-sm text-gray-500">Last viewed 1 week ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 3 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="UI/UX Design">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.8
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">UI/UX Design with Figma</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>7,890 students</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>Progress</span>
+                                        <span>28%</span>
+                                    </div>
+                                    <progress class="course-progress w-full h-2" value="28" max="100"></progress>
+                                </div>
+                                <div class="flex justify-between">
+                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Continue</a>
+                                    <span class="text-sm text-gray-500">Last viewed today</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Courses -->
+                <div class="mt-8 px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Recommended For You</h2>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Course 1 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Digital Marketing">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.5
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Digital Marketing Masterclass 2023</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>5,432 students</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-sm">Mike Johnson</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-indigo-600 font-bold">₦70,000</span>
+                                        <span class="block text-xs text-gray-400 line-through">₦150,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 2 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="React">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.7
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">React - The Complete Guide (incl Hooks, React Router, Redux)</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>15,678 students</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-sm">John Doe</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-indigo-600 font-bold">₦90,000</span>
+                                        <span class="block text-xs text-gray-400 line-through">₦200,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 3 -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="relative">
+                                <img class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Data Analytics">
+                                <div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                                    <i class="fas fa-star mr-1 text-yellow-400"></i> 4.6
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Data Analytics with Python and Pandas</h3>
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="fas fa-user-graduate mr-1"></i>
+                                    <span>6,543 students</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Instructor" class="w-6 h-6 rounded-full mr-2">
+                                        <span class="text-sm">Jane Smith</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-indigo-600 font-bold">₦70,000</span>
+                                        <span class="block text-xs text-gray-400 line-through">₦150,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
